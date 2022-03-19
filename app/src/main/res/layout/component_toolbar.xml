@@ -13,6 +13,7 @@
         app:elevation="8dp"
         app:title="AriyanaPool"
         app:titleTextColor="@color/white"
+        style="@style/Base_ToolbarStyle"
         />
 
 </com.google.android.material.appbar.AppBarLayout>

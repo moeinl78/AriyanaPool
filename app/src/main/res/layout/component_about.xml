@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="256dp"
+    android:layout_margin="8dp"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="8dp"
+    >
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+        <TextView
+            android:id="@+id/compAboutWebsiteTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/website"
+            android:textColor="@color/gray"
+            android:textSize="@dimen/l"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            />
+
+        <TextView
+            android:id="@+id/compAboutTwitterTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="32dp"
+            android:text="@string/twitter"
+            android:textColor="@color/gray"
+            android:textSize="@dimen/l"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/compAboutWebsiteTV"
+            />
+
+        <TextView
+            android:id="@+id/compAboutRedditTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="32dp"
+            android:text="@string/reddit"
+            android:textColor="@color/gray"
+            android:textSize="@dimen/l"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/compAboutTwitterTV"
+            />
+
+        <TextView
+            android:id="@+id/compAboutGithubTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="32dp"
+            android:text="@string/github"
+            android:textColor="@color/gray"
+            android:textSize="@dimen/l"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/compAboutRedditTV"
+            />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/compAboutGuideLine"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="128dp"
+            />
+
+        <TextView
+            android:id="@+id/compAboutWebsite"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:text="N/A"
+            android:textSize="@dimen/ul"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/compAboutGuideLine"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/compAboutWebsiteTV"
+            app:layout_constraintBottom_toBottomOf="@+id/compAboutWebsiteTV"
+            />
+
+        <TextView
+            android:id="@+id/compAboutTwitter"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:text="N/A"
+            android:textSize="@dimen/ul"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/compAboutGuideLine"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/compAboutTwitterTV"
+            app:layout_constraintBottom_toBottomOf="@+id/compAboutTwitterTV"
+            />
+
+        <TextView
+            android:id="@+id/compAboutReddit"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:text="N/A"
+            android:textSize="@dimen/ul"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/compAboutGuideLine"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/compAboutRedditTV"
+            app:layout_constraintBottom_toBottomOf="@+id/compAboutRedditTV"
+            />
+
+        <TextView
+            android:id="@+id/compAboutGithub"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:text="N/A"
+            android:textSize="@dimen/ul"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/compAboutGuideLine"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/compAboutGithubTV"
+            app:layout_constraintBottom_toBottomOf="@+id/compAboutGithubTV"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>

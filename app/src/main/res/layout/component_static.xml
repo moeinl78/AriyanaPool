@@ -12,22 +12,20 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        >
+        android:layout_height="match_parent">
 
         <TextView
             android:id="@+id/compStaticPrice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
             android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
             android:text="$170.11"
             android:textColor="@color/black"
             android:textSize="@dimen/l"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/compStaticPriceStatus"
@@ -39,8 +37,7 @@
             android:textSize="@dimen/m"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@+id/compStaticPrice"
-            app:layout_constraintTop_toBottomOf="@+id/compStaticPrice"
-            />
+            app:layout_constraintTop_toBottomOf="@+id/compStaticPrice" />
 
         <TextView
             android:id="@+id/compStaticPricePeak"
@@ -52,8 +49,7 @@
             android:textSize="@dimen/l"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@id/compStaticPriceStatus"
-            app:layout_constraintTop_toBottomOf="@+id/compStaticPriceStatus"
-            />
+            app:layout_constraintTop_toBottomOf="@+id/compStaticPriceStatus" />
 
         <TextView
             android:id="@+id/compStaticPricePeakDate"
@@ -65,8 +61,7 @@
             android:textSize="@dimen/m"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@id/compStaticPriceStatus"
-            app:layout_constraintTop_toBottomOf="@+id/compStaticPricePeak"
-            />
+            app:layout_constraintTop_toBottomOf="@+id/compStaticPricePeak" />
 
         <TextView
             android:id="@+id/compStaticPriceMin"
@@ -78,8 +73,7 @@
             android:textSize="@dimen/l"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@id/compStaticPricePeakDate"
-            app:layout_constraintTop_toBottomOf="@+id/compStaticPricePeakDate"
-            />
+            app:layout_constraintTop_toBottomOf="@+id/compStaticPricePeakDate" />
 
         <TextView
             android:id="@+id/compStaticPriceMinDate"
@@ -91,32 +85,37 @@
             android:textSize="@dimen/m"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@id/compStaticPricePeakDate"
-            app:layout_constraintTop_toBottomOf="@+id/compStaticPriceMin"
-            />
+            app:layout_constraintTop_toBottomOf="@+id/compStaticPriceMin" />
 
         <TextView
             android:id="@+id/compStaticPriceTodayChange"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
             android:text="$177.32"
             android:textColor="@color/black"
-            android:textStyle="bold"
             android:textSize="@dimen/l"
-            android:layout_marginTop="8dp"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@+id/compStaticPriceMin"
-            app:layout_constraintTop_toBottomOf="@+id/compStaticPriceMinDate"
-            />
+            app:layout_constraintTop_toBottomOf="@+id/compStaticPriceMinDate" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
             android:text="Change today's"
             android:textColor="@color/gray"
-            android:textStyle="bold"
             android:textSize="@dimen/m"
-            android:layout_marginTop="4dp"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@id/compStaticPriceTodayChange"
-            app:layout_constraintTop_toBottomOf="@+id/compStaticPriceTodayChange"
+            app:layout_constraintTop_toBottomOf="@+id/compStaticPriceTodayChange" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/compStaticGuideLine"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="224dp"
             />
 
         <TextView
@@ -124,14 +123,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:layout_marginEnd="128dp"
             android:text="12M"
             android:textColor="@color/black"
             android:textSize="@dimen/l"
             android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            />
+            app:layout_constraintStart_toStartOf="@+id/compStaticGuideLine"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/compStaticMarketVolume"
@@ -143,8 +140,7 @@
             android:textSize="@dimen/m"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@+id/compStaticMarketTransfer"
-            app:layout_constraintTop_toBottomOf="@+id/compStaticMarketTransfer"
-            />
+            app:layout_constraintTop_toBottomOf="@+id/compStaticMarketTransfer" />
 
         <TextView
             android:id="@+id/compStaticMarketAvg"
@@ -156,8 +152,7 @@
             android:textSize="@dimen/l"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@id/compStaticMarketTransfer"
-            app:layout_constraintTop_toBottomOf="@+id/compStaticMarketVolume"
-            />
+            app:layout_constraintTop_toBottomOf="@+id/compStaticMarketVolume" />
 
         <TextView
             android:id="@+id/compStaticMarketAvgVolume"
@@ -169,8 +164,7 @@
             android:textSize="@dimen/m"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@id/compStaticMarketTransfer"
-            app:layout_constraintTop_toBottomOf="@+id/compStaticMarketAvg"
-            />
+            app:layout_constraintTop_toBottomOf="@+id/compStaticMarketAvg" />
 
         <TextView
             android:id="@+id/compStaticMarketCap"
@@ -182,8 +176,7 @@
             android:textSize="@dimen/l"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@id/compStaticMarketTransfer"
-            app:layout_constraintTop_toBottomOf="@+id/compStaticMarketAvgVolume"
-            />
+            app:layout_constraintTop_toBottomOf="@+id/compStaticMarketAvgVolume" />
 
         <TextView
             android:id="@+id/compStaticMarketCapText"
@@ -195,34 +188,31 @@
             android:textSize="@dimen/m"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@id/compStaticMarketTransfer"
-            app:layout_constraintTop_toBottomOf="@+id/compStaticMarketCap"
-            />
+            app:layout_constraintTop_toBottomOf="@+id/compStaticMarketCap" />
 
         <TextView
             android:id="@+id/compStaticSupply"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
             android:text="18.433"
             android:textColor="@color/black"
-            android:textStyle="bold"
             android:textSize="@dimen/l"
-            android:layout_marginTop="8dp"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@+id/compStaticMarketTransfer"
-            app:layout_constraintTop_toBottomOf="@+id/compStaticMarketCapText"
-            />
+            app:layout_constraintTop_toBottomOf="@+id/compStaticMarketCapText" />
 
         <TextView
             android:id="@+id/compStaticSupplyText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
             android:text="Supply"
             android:textColor="@color/gray"
-            android:textStyle="bold"
             android:textSize="@dimen/m"
-            android:layout_marginTop="4dp"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@id/compStaticMarketTransfer"
-            app:layout_constraintTop_toBottomOf="@+id/compStaticSupply"
-            />
+            app:layout_constraintTop_toBottomOf="@+id/compStaticSupply" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

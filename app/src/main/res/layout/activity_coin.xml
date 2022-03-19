@@ -30,9 +30,36 @@
                 layout="@layout/component_chart"
                 />
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="8dp"
+                android:text="@string/statistics"
+                android:textColor="@color/gray"
+                android:textStyle="bold"
+                android:textSize="@dimen/title"
+                />
+
             <include
                 android:id="@+id/coinActivityStatic"
                 layout="@layout/component_static"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="8dp"
+                android:text="@string/about"
+                android:textColor="@color/gray"
+                android:textStyle="bold"
+                android:textSize="@dimen/title"
+                />
+
+            <include
+                android:id="@+id/coinActivityAbout"
+                layout="@layout/component_about"
                 />
 
         </LinearLayout>

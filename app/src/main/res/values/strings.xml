@@ -3,4 +3,10 @@
     <string name="show_more">Show More</string>
     <string name="price">$40.70</string>
     <string name="status">status</string>
+    <string name="statistics">Statistics</string>
+    <string name="about">About</string>
+    <string name="website">Website</string>
+    <string name="twitter">Twitter</string>
+    <string name="reddit">Reddit</string>
+    <string name="github">Github</string>
 </resources>

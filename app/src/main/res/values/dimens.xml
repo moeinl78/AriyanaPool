@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="us">10sp</dimen>
+    <dimen name="s">12sp</dimen>
+    <dimen name="m">14sp</dimen>
+    <dimen name="l">16sp</dimen>
+    <dimen name="ul">18sp</dimen>
+    <dimen name="title">20sp</dimen>
+    <dimen name="header">24sp</dimen>
+</resources>

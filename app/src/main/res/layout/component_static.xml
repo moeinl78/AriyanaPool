@@ -1,8 +1,229 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<androidx.cardview.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="272dp"
+    android:layout_margin="8dp"
+    app:cardElevation="8dp"
+    app:cardCornerRadius="8dp"
     >
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+        <TextView
+            android:id="@+id/compStaticPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="16dp"
+            android:text="$170.11"
+            android:textColor="@color/black"
+            android:textSize="@dimen/l"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            />
+
+        <TextView
+            android:id="@+id/compStaticPriceStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="Open"
+            android:textColor="@color/gray"
+            android:textSize="@dimen/m"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/compStaticPrice"
+            app:layout_constraintTop_toBottomOf="@+id/compStaticPrice"
+            />
+
+        <TextView
+            android:id="@+id/compStaticPricePeak"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="$172.30"
+            android:textColor="@color/black"
+            android:textSize="@dimen/l"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@id/compStaticPriceStatus"
+            app:layout_constraintTop_toBottomOf="@+id/compStaticPriceStatus"
+            />
+
+        <TextView
+            android:id="@+id/compStaticPricePeakDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="Today's High"
+            android:textColor="@color/gray"
+            android:textSize="@dimen/m"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@id/compStaticPriceStatus"
+            app:layout_constraintTop_toBottomOf="@+id/compStaticPricePeak"
+            />
+
+        <TextView
+            android:id="@+id/compStaticPriceMin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="$169.20"
+            android:textColor="@color/black"
+            android:textSize="@dimen/l"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@id/compStaticPricePeakDate"
+            app:layout_constraintTop_toBottomOf="@+id/compStaticPricePeakDate"
+            />
+
+        <TextView
+            android:id="@+id/compStaticPriceMinDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="Today's Low"
+            android:textColor="@color/gray"
+            android:textSize="@dimen/m"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@id/compStaticPricePeakDate"
+            app:layout_constraintTop_toBottomOf="@+id/compStaticPriceMin"
+            />
+
+        <TextView
+            android:id="@+id/compStaticPriceTodayChange"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="$177.32"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:textSize="@dimen/l"
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toStartOf="@+id/compStaticPriceMin"
+            app:layout_constraintTop_toBottomOf="@+id/compStaticPriceMinDate"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Change today's"
+            android:textColor="@color/gray"
+            android:textStyle="bold"
+            android:textSize="@dimen/m"
+            android:layout_marginTop="4dp"
+            app:layout_constraintStart_toStartOf="@id/compStaticPriceTodayChange"
+            app:layout_constraintTop_toBottomOf="@+id/compStaticPriceTodayChange"
+            />
+
+        <TextView
+            android:id="@+id/compStaticMarketTransfer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="128dp"
+            android:text="12M"
+            android:textColor="@color/black"
+            android:textSize="@dimen/l"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            />
+
+        <TextView
+            android:id="@+id/compStaticMarketVolume"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="Volume"
+            android:textColor="@color/gray"
+            android:textSize="@dimen/m"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/compStaticMarketTransfer"
+            app:layout_constraintTop_toBottomOf="@+id/compStaticMarketTransfer"
+            />
+
+        <TextView
+            android:id="@+id/compStaticMarketAvg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="27M"
+            android:textColor="@color/black"
+            android:textSize="@dimen/l"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@id/compStaticMarketTransfer"
+            app:layout_constraintTop_toBottomOf="@+id/compStaticMarketVolume"
+            />
+
+        <TextView
+            android:id="@+id/compStaticMarketAvgVolume"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="Average Volume"
+            android:textColor="@color/gray"
+            android:textSize="@dimen/m"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@id/compStaticMarketTransfer"
+            app:layout_constraintTop_toBottomOf="@+id/compStaticMarketAvg"
+            />
+
+        <TextView
+            android:id="@+id/compStaticMarketCap"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="$867.34B"
+            android:textColor="@color/black"
+            android:textSize="@dimen/l"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@id/compStaticMarketTransfer"
+            app:layout_constraintTop_toBottomOf="@+id/compStaticMarketAvgVolume"
+            />
+
+        <TextView
+            android:id="@+id/compStaticMarketCapText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="Market Cap"
+            android:textColor="@color/gray"
+            android:textSize="@dimen/m"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@id/compStaticMarketTransfer"
+            app:layout_constraintTop_toBottomOf="@+id/compStaticMarketCap"
+            />
+
+        <TextView
+            android:id="@+id/compStaticSupply"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="18.433"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:textSize="@dimen/l"
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toStartOf="@+id/compStaticMarketTransfer"
+            app:layout_constraintTop_toBottomOf="@+id/compStaticMarketCapText"
+            />
+
+        <TextView
+            android:id="@+id/compStaticSupplyText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Supply"
+            android:textColor="@color/gray"
+            android:textStyle="bold"
+            android:textSize="@dimen/m"
+            android:layout_marginTop="4dp"
+            app:layout_constraintStart_toStartOf="@id/compStaticMarketTransfer"
+            app:layout_constraintTop_toBottomOf="@+id/compStaticSupply"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>

@@ -30,6 +30,11 @@
                 layout="@layout/component_chart"
                 />
 
+            <include
+                android:id="@+id/coinActivityStatic"
+                layout="@layout/component_static"
+                />
+
         </LinearLayout>
 
     </androidx.core.widget.NestedScrollView>

@@ -105,6 +105,7 @@
                     android:button="@null"
                     android:background="@drawable/selector_radio_button"
                     android:text="12H"
+                    android:textColor="@color/white"
                     android:gravity="center"
                     android:checked="true"
                     />
@@ -117,6 +118,7 @@
                     android:button="@null"
                     android:background="@drawable/selector_radio_button"
                     android:text="1D"
+                    android:textColor="@color/white"
                     android:gravity="center"
                     />
 
@@ -128,6 +130,7 @@
                     android:button="@null"
                     android:background="@drawable/selector_radio_button"
                     android:text="1W"
+                    android:textColor="@color/white"
                     android:gravity="center"
                     />
 
@@ -139,6 +142,7 @@
                     android:button="@null"
                     android:background="@drawable/selector_radio_button"
                     android:text="1M"
+                    android:textColor="@color/white"
                     android:gravity="center"
                     />
 
@@ -150,6 +154,7 @@
                     android:button="@null"
                     android:background="@drawable/selector_radio_button"
                     android:text="3M"
+                    android:textColor="@color/white"
                     android:gravity="center"
                     />
 
@@ -161,6 +166,7 @@
                     android:button="@null"
                     android:background="@drawable/selector_radio_button"
                     android:text="1Y"
+                    android:textColor="@color/white"
                     android:gravity="center"
                     />
 
@@ -173,6 +179,7 @@
                     android:button="@null"
                     android:background="@drawable/selector_radio_button"
                     android:text="ALL"
+                    android:textColor="@color/white"
                     android:gravity="center"
                     />
 

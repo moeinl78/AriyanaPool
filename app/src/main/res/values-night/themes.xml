@@ -3,28 +3,31 @@
     <style name="Theme.AriyanaPool" parent="Theme.MaterialComponents.DayNight.NoActionBar">
 
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/purple_200</item>
-        <item name="colorPrimaryVariant">@color/purple_700</item>
+        <item name="colorPrimary">@color/blue_500</item>
+        <item name="colorPrimaryVariant">@color/blue_700</item>
         <item name="colorOnPrimary">@color/black</item>
 
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/teal_200</item>
-        <item name="colorSecondaryVariant">@color/teal_200</item>
+        <item name="colorSecondary">@color/orange_600</item>
+        <item name="colorSecondaryVariant">@color/orange_900</item>
         <item name="colorOnSecondary">@color/black</item>
 
         <!-- Other colors -->
-        <item name="android:colorBackground">@color/white</item>
-        <item name="colorSurface">@color/white</item>
         <item name="colorError">@color/red</item>
         <item name="colorOnBackground">@color/black</item>
         <item name="colorOnSurface">@color/black</item>
         <item name="colorOnError">@color/white</item>
 
         <!-- Status bar color. -->
-        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimary</item>
 
         <!-- Customize your theme here. -->
         <item name="fontFamily">@font/mukta_medium</item>
         <item name="android:fontFamily">@font/mukta_medium</item>
+    </style>
+
+    <style name="Base_ToolbarStyle">
+        <item name="popupTheme">@style/ThemeOverlay.AppCompat.Light</item>
+        <item name="tint">@color/white</item>
     </style>
 </resources>

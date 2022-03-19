@@ -8,6 +8,30 @@
     tools:context=".CoinActivity"
     >
 
+    <include
+        android:id="@+id/coinActivityToolbar"
+        layout="@layout/component_toolbar"
+        />
 
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            >
+
+            <include
+                android:id="@+id/coinActivityChart"
+                layout="@layout/component_chart"
+                />
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

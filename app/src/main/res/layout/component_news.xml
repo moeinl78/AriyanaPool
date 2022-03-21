@@ -38,6 +38,7 @@
             />
 
         <TextView
+            android:id="@+id/compNewsTextView"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit"

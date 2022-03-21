@@ -1,10 +1,11 @@
 package ir.ariyana.ariyanapool
 
+import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import ir.ariyana.ariyanapool.api.ManagerAPI
-import ir.ariyana.ariyanapool.data.news.DataNews
 import ir.ariyana.ariyanapool.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -49,9 +50,21 @@ class MainActivity : AppCompatActivity() {
         })
     }
 
+    // change news onclick or show news in browser
     private fun changeNews() {
-        binding.componentNews.compNewsFAB.setOnClickListener {
 
+        val random = (0..49).random()
+        val randomNews = news[random]
+        binding.componentNews.compNewsTextView.text = randomNews.first
+
+        binding.componentNews.compNewsFAB.setOnClickListener {
+            changeNews()
+        }
+
+        binding.componentNews.compNewsTextView.setOnClickListener {
+            val url = randomNews.second
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+            startActivity(intent)
         }
     }
 }

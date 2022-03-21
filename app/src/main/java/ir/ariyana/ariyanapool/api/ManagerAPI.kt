@@ -1,6 +1,7 @@
 package ir.ariyana.ariyanapool.api
 
 import ir.ariyana.ariyanapool.data.news.DataNews
+import ir.ariyana.ariyanapool.data.trend_crypto.TrendCrypto
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -43,6 +44,24 @@ class ManagerAPI {
                     val errorMessage = t.message!!
                     callbackAPI.onFailedRequest(errorMessage)
                 }
+            })
+    }
+
+    fun managerRequestTrendCrypto(callbackAPI: CallbackAPI<ArrayList<TrendCrypto.Data>>) {
+
+        serviceAPI
+            .requestTrendCrypto()
+            .enqueue(object : Callback<TrendCrypto> {
+
+                override fun onResponse(call: Call<TrendCrypto>, response: Response<TrendCrypto>) {
+                    val result = response.body()!!
+                    callbackAPI.onSuccessfulRequest(ArrayList(result.data))
+                }
+
+                override fun onFailure(call: Call<TrendCrypto>, t: Throwable) {
+                    callbackAPI.onFailedRequest(t.message!!)
+                }
+
             })
     }
 

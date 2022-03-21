@@ -23,6 +23,7 @@
         >
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/compCryptoRecyclerView"
             android:layout_width="match_parent"
             android:layout_height="512dp"
             app:layout_constraintStart_toStartOf="parent"

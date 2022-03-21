@@ -6,7 +6,11 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import ir.ariyana.ariyanapool.adapter.AdapterCrypto
 import ir.ariyana.ariyanapool.api.ManagerAPI
+import ir.ariyana.ariyanapool.data.trend_crypto.TrendCrypto
 import ir.ariyana.ariyanapool.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -14,6 +18,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding : ActivityMainBinding
     private val managerAPI = ManagerAPI()
     private lateinit var news : ArrayList<Pair<String, String>>
+    private lateinit var dataCrypto : ArrayList<TrendCrypto.Data>
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -22,17 +27,20 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         setSupportActionBar(binding.componentToolbar.compHeaderToolbarLayout)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        supportActionBar?.setIcon(R.drawable.ic_baseline_currency_bitcoin_24)
+        supportActionBar?.title = "Market"
 
         onUserInterfaceStart()
+
+        val adapter = AdapterCrypto(dataCrypto)
+        binding.componentRecycler.compCryptoRecyclerView.adapter = adapter
+        binding.componentRecycler.compCryptoRecyclerView.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
     }
 
     private fun onUserInterfaceStart() {
 
         // news from api
         receiveNewsData()
+        receiveTrendCrypto()
     }
 
     // call back to receive data
@@ -49,6 +57,21 @@ class MainActivity : AppCompatActivity() {
                 Toast.makeText(this@MainActivity, error, Toast.LENGTH_SHORT).show()
                 Log.v("error", error)
             }
+        })
+    }
+
+    private fun receiveTrendCrypto() {
+
+        managerAPI.managerRequestTrendCrypto(object : ManagerAPI.CallbackAPI<ArrayList<TrendCrypto.Data>> {
+
+            override fun onSuccessfulRequest(data: ArrayList<TrendCrypto.Data>) {
+                dataCrypto = data
+            }
+
+            override fun onFailedRequest(error: String) {
+                TODO("Not yet implemented")
+            }
+
         })
     }
 

@@ -2,13 +2,17 @@ package ir.ariyana.ariyanapool
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import ir.ariyana.ariyanapool.api.ManagerAPI
+import ir.ariyana.ariyanapool.data.news.DataNews
 import ir.ariyana.ariyanapool.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
-    lateinit var binding : ActivityMainBinding
+    private lateinit var binding : ActivityMainBinding
     private val managerAPI = ManagerAPI()
+    private lateinit var news : ArrayList<Pair<String, String>>
+
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
@@ -19,5 +23,35 @@ class MainActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setIcon(R.drawable.ic_baseline_currency_bitcoin_24)
+
+        onUserInterfaceStart()
+    }
+
+    private fun onUserInterfaceStart() {
+
+        // news from api
+        receiveNewsData()
+    }
+
+    // call back to receive data
+    private fun receiveNewsData() {
+
+        managerAPI.managerRequestNews(object : ManagerAPI.CallbackAPI<ArrayList<Pair<String, String>>>{
+
+            override fun onSuccessfulRequest(data: ArrayList<Pair<String, String>>) {
+                news = data
+                changeNews()
+            }
+
+            override fun onFailedRequest(error: String) {
+                Toast.makeText(this@MainActivity, error, Toast.LENGTH_SHORT).show()
+            }
+        })
+    }
+
+    private fun changeNews() {
+        binding.componentNews.compNewsFAB.setOnClickListener {
+
+        }
     }
 }

@@ -24,15 +24,23 @@ class ManagerAPI {
         serviceAPI = retrofit.create(ServiceAPI::class.java)
     }
 
-    fun managerRequestNews(callbackAPI: CallbackAPI<DataNews>) {
+    fun managerRequestNews(callbackAPI: CallbackAPI<ArrayList<Pair<String, String>>>) {
 
         serviceAPI
             .requestNews()
             .enqueue(object : Callback<DataNews> {
 
                 override fun onResponse(call: Call<DataNews>, response: Response<DataNews>) {
+
                     val result = response.body()!!
-                    callbackAPI.onSuccessfulRequest(result)
+                    var data : Pair<String, String>
+                    val dataSet : ArrayList<Pair<String, String>> = arrayListOf()
+
+                    result.data.map { item ->
+                        data = Pair(item.title, item.url)
+                        dataSet.add(data)
+                    }
+                    callbackAPI.onSuccessfulRequest(dataSet)
                 }
 
                 override fun onFailure(call: Call<DataNews>, t: Throwable) {

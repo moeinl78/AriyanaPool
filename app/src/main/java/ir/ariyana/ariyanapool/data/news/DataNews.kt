@@ -1,6 +1,5 @@
 package ir.ariyana.ariyanapool.data.news
 
-
 import com.google.gson.annotations.SerializedName
 
 data class DataNews(

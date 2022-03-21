@@ -4,6 +4,7 @@ import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import ir.ariyana.ariyanapool.api.ManagerAPI
 import ir.ariyana.ariyanapool.databinding.ActivityMainBinding
@@ -46,6 +47,7 @@ class MainActivity : AppCompatActivity() {
 
             override fun onFailedRequest(error: String) {
                 Toast.makeText(this@MainActivity, error, Toast.LENGTH_SHORT).show()
+                Log.v("error", error)
             }
         })
     }

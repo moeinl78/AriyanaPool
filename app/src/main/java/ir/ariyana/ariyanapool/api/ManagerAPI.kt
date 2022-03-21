@@ -1,7 +1,6 @@
 package ir.ariyana.ariyanapool.api
 
 import ir.ariyana.ariyanapool.data.news.DataNews
-import ir.ariyana.ariyanapool.data.trend_crypto.TrendCrypto
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -10,7 +9,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 const val BASE_URL = "https://min-api.cryptocompare.com/data/"
 const val BASE_URL_IMAGE = "https://www.cryptocompare.com"
-const val API_KEY = "4193081fd30e216fe400a1a2fd0a2d150946a62dba29a043d8b70e65f0e02563"
+const val API_KEY = "api_key: 4193081fd30e216fe400a1a2fd0a2d150946a62dba29a043d8b70e65f0e02563"
 
 class ManagerAPI {
     private val serviceAPI : ServiceAPI
@@ -31,37 +30,16 @@ class ManagerAPI {
             .enqueue(object : Callback<DataNews> {
 
                 override fun onResponse(call: Call<DataNews>, response: Response<DataNews>) {
-
                     val result = response.body()!!
-                    var data : Pair<String, String>
                     val dataSet : ArrayList<Pair<String, String>> = arrayListOf()
 
-                    result.data.map { item ->
-                        data = Pair(item.title, item.url)
-                        dataSet.add(data)
+                    result.data.forEach { item ->
+                        dataSet.add(Pair(item.title, item.url))
                     }
                     callbackAPI.onSuccessfulRequest(dataSet)
                 }
 
                 override fun onFailure(call: Call<DataNews>, t: Throwable) {
-                    val errorMessage = t.message!!
-                    callbackAPI.onFailedRequest(errorMessage)
-                }
-            })
-    }
-
-    fun managerRequestTrendCrypto(callbackAPI: CallbackAPI<TrendCrypto>) {
-
-        serviceAPI
-            .requestTrendCrypto()
-            .enqueue(object : Callback<TrendCrypto> {
-
-                override fun onResponse(call: Call<TrendCrypto>, response: Response<TrendCrypto>) {
-                    val result = response.body()!!
-                    callbackAPI.onSuccessfulRequest(result)
-                }
-
-                override fun onFailure(call: Call<TrendCrypto>, t: Throwable) {
                     val errorMessage = t.message!!
                     callbackAPI.onFailedRequest(errorMessage)
                 }

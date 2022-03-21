@@ -37,7 +37,7 @@ data class TrendCrypto(
             @SerializedName("BlockReward")
             val blockReward: Double,
             @SerializedName("BlockTime")
-            val blockTime: Int,
+            val blockTime: Double,
             @SerializedName("DocumentType")
             val documentType: String,
             @SerializedName("FullName")
@@ -53,7 +53,7 @@ data class TrendCrypto(
             @SerializedName("Name")
             val name: String,
             @SerializedName("NetHashesPerSecond")
-            val netHashesPerSecond: Long,
+            val netHashesPerSecond: String,
             @SerializedName("ProofType")
             val proofType: String,
             @SerializedName("Rating")
@@ -192,7 +192,7 @@ data class TrendCrypto(
                 @SerializedName("CHANGEPCTHOUR")
                 val cHANGEPCTHOUR: Double,
                 @SerializedName("CIRCULATINGSUPPLY")
-                val cIRCULATINGSUPPLY: Int,
+                val cIRCULATINGSUPPLY: Double,
                 @SerializedName("CIRCULATINGSUPPLYMKTCAP")
                 val cIRCULATINGSUPPLYMKTCAP: Double,
                 @SerializedName("CONVERSIONSYMBOL")
@@ -244,7 +244,7 @@ data class TrendCrypto(
                 @SerializedName("PRICE")
                 val pRICE: Double,
                 @SerializedName("SUPPLY")
-                val sUPPLY: Int,
+                val sUPPLY: String,
                 @SerializedName("TOPTIERVOLUME24HOUR")
                 val tOPTIERVOLUME24HOUR: Double,
                 @SerializedName("TOPTIERVOLUME24HOURTO")

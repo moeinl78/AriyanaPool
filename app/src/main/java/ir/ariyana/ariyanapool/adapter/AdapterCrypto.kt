@@ -3,7 +3,8 @@ package ir.ariyana.ariyanapool.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import ir.ariyana.ariyanapool.data.news.DataNews
+import com.bumptech.glide.Glide
+import ir.ariyana.ariyanapool.api.BASE_URL_IMAGE
 import ir.ariyana.ariyanapool.data.trend_crypto.TrendCrypto
 import ir.ariyana.ariyanapool.databinding.ItemRecyclerCryptoBinding
 
@@ -18,7 +19,10 @@ class AdapterCrypto(private val data : ArrayList<TrendCrypto.Data>) : RecyclerVi
             binding.itemCryptoBase.text = data[position].coinInfo.algorithm
             binding.itemCryptoPrice.text = data[position].dISPLAY.uSD.pRICE
             binding.itemCryptoMarketValue.text = data[position].dISPLAY.uSD.mKTCAP
-            
+            Glide
+                .with(binding.root.context)
+                .load(BASE_URL_IMAGE + data[position].coinInfo.imageUrl)
+                .into(binding.itemCryptoCircleImage)
         }
     }
 
@@ -32,6 +36,6 @@ class AdapterCrypto(private val data : ArrayList<TrendCrypto.Data>) : RecyclerVi
     }
 
     override fun getItemCount(): Int {
-        return 1
+        return data.size
     }
 }

@@ -7,7 +7,6 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import ir.ariyana.ariyanapool.adapter.AdapterCrypto
 import ir.ariyana.ariyanapool.api.ManagerAPI
 import ir.ariyana.ariyanapool.data.trend_crypto.TrendCrypto
@@ -30,10 +29,6 @@ class MainActivity : AppCompatActivity() {
         supportActionBar?.title = "Market"
 
         onUserInterfaceStart()
-
-        val adapter = AdapterCrypto(dataCrypto)
-        binding.componentRecycler.compCryptoRecyclerView.adapter = adapter
-        binding.componentRecycler.compCryptoRecyclerView.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
     }
 
     private fun onUserInterfaceStart() {
@@ -55,7 +50,6 @@ class MainActivity : AppCompatActivity() {
 
             override fun onFailedRequest(error: String) {
                 Toast.makeText(this@MainActivity, error, Toast.LENGTH_SHORT).show()
-                Log.v("error", error)
             }
         })
     }
@@ -65,11 +59,16 @@ class MainActivity : AppCompatActivity() {
         managerAPI.managerRequestTrendCrypto(object : ManagerAPI.CallbackAPI<ArrayList<TrendCrypto.Data>> {
 
             override fun onSuccessfulRequest(data: ArrayList<TrendCrypto.Data>) {
+
                 dataCrypto = data
+                val adapter = AdapterCrypto(dataCrypto)
+                binding.componentRecycler.compCryptoRecyclerView.adapter = adapter
+                binding.componentRecycler.compCryptoRecyclerView.layoutManager = LinearLayoutManager(this@MainActivity)
             }
 
             override fun onFailedRequest(error: String) {
-                TODO("Not yet implemented")
+                Toast.makeText(this@MainActivity, error, Toast.LENGTH_SHORT).show()
+                Log.v("error", error)
             }
 
         })

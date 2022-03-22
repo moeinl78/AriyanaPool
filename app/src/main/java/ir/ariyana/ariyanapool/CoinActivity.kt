@@ -2,11 +2,10 @@ package ir.ariyana.ariyanapool
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import ir.ariyana.ariyanapool.adapter.AdapterChart
-import ir.ariyana.ariyanapool.api.HOUR
-import ir.ariyana.ariyanapool.api.ManagerAPI
+import ir.ariyana.ariyanapool.api.*
 import ir.ariyana.ariyanapool.data.chart.DataChart
 import ir.ariyana.ariyanapool.data.trend_crypto.TrendCrypto
 import ir.ariyana.ariyanapool.databinding.ActivityCoinBinding
@@ -45,13 +44,70 @@ class CoinActivity : AppCompatActivity() {
 
     private fun onUserInterfaceStart() {
 
-        receiveCharData()
+        modifyCharData()
     }
 
-    private fun receiveCharData() {
+    private fun modifyCharData() {
 
         val coinName = data.coinInfo.name
-        managerAPI.managerRequestChartData(HOUR, coinName, object : ManagerAPI.CallbackAPI<Pair<ArrayList<DataChart.Data.Data>, DataChart.Data.Data>>{
+        var period = HOUR
+        binding.coinActivityChart.compChartCurrentPrice.text = data.dISPLAY.uSD.pRICE
+        binding.coinActivityChart.compChartStatusDifference.text = data.dISPLAY.uSD.cHANGEDAY
+        binding.coinActivityChart.compChartStatusPercentage.text = data.dISPLAY.uSD.cHANGEPCTDAY
+        receiveCharData(period, coinName)
+
+        val diff = data.rAW.uSD.cHANGE24HOUR
+        if (diff > 0) {
+            binding.coinActivityChart.compChartStatusDifference.setTextColor(ContextCompat.getColor(this, android.R.color.holo_green_dark))
+            binding.coinActivityChart.compChartStatusPercentage.setTextColor(ContextCompat.getColor(this, android.R.color.holo_green_dark))
+        }
+        else {
+            binding.coinActivityChart.compChartStatusDifference.setTextColor(ContextCompat.getColor(this, android.R.color.holo_red_dark))
+            binding.coinActivityChart.compChartStatusPercentage.setTextColor(ContextCompat.getColor(this, android.R.color.holo_red_dark))
+        }
+
+        // check any changes for the radio group
+        binding.coinActivityChart.compchartRadioGroup.setOnCheckedChangeListener { _, id ->
+            period = when(id) {
+                R.id.compChartRadioHalfDay -> {
+                    HOUR
+                }
+
+                R.id.compChartRadioOneDay -> {
+                    HOURS24
+                }
+
+                R.id.compChartRadioOneWeek -> {
+                    WEEK
+                }
+
+                R.id.compChartRadioOneMonth -> {
+                    MONTH
+                }
+
+                R.id.compChartRadioThreeMonth -> {
+                    MONTH3
+                }
+
+                R.id.compChartRadioOneYear -> {
+                    YEAR
+                }
+
+                R.id.compChartRadioAll -> {
+                    ALL
+                }
+                else -> {
+                    HOUR
+                }
+            }
+            receiveCharData(period, coinName)
+        }
+    }
+
+    private fun receiveCharData(period : String, coinName : String) {
+
+        // instantiate api call for chart data
+        managerAPI.managerRequestChartData(period, coinName, object : ManagerAPI.CallbackAPI<Pair<ArrayList<DataChart.Data.Data>, DataChart.Data.Data>>{
 
             override fun onSuccessfulRequest(data: Pair<ArrayList<DataChart.Data.Data>, DataChart.Data.Data>) {
 

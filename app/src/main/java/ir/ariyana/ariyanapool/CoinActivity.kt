@@ -2,6 +2,7 @@ package ir.ariyana.ariyanapool
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.ContactsContract
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import ir.ariyana.ariyanapool.adapter.AdapterChart
@@ -53,17 +54,28 @@ class CoinActivity : AppCompatActivity() {
         var period = HOUR
         binding.coinActivityChart.compChartCurrentPrice.text = data.dISPLAY.uSD.pRICE
         binding.coinActivityChart.compChartStatusDifference.text = data.dISPLAY.uSD.cHANGEDAY
-        binding.coinActivityChart.compChartStatusPercentage.text = data.dISPLAY.uSD.cHANGEPCTDAY
+        binding.coinActivityChart.compChartStatusPercentage.text = data.dISPLAY.uSD.cHANGEPCTDAY + " %"
         receiveCharData(period, coinName)
 
         val diff = data.rAW.uSD.cHANGE24HOUR
         if (diff > 0) {
             binding.coinActivityChart.compChartStatusDifference.setTextColor(ContextCompat.getColor(this, android.R.color.holo_green_dark))
             binding.coinActivityChart.compChartStatusPercentage.setTextColor(ContextCompat.getColor(this, android.R.color.holo_green_dark))
+            binding.coinActivityChart.compChartStatusIcon.setColorFilter(ContextCompat.getColor(this, android.R.color.holo_green_dark))
         }
         else {
             binding.coinActivityChart.compChartStatusDifference.setTextColor(ContextCompat.getColor(this, android.R.color.holo_red_dark))
             binding.coinActivityChart.compChartStatusPercentage.setTextColor(ContextCompat.getColor(this, android.R.color.holo_red_dark))
+            binding.coinActivityChart.compChartStatusIcon.setColorFilter(ContextCompat.getColor(this, android.R.color.holo_red_dark))
+        }
+
+        binding.coinActivityChart.compChartSparkView.setScrubListener {
+            if(it == null) {
+                binding.coinActivityChart.compChartCurrentPrice.text = data.dISPLAY.uSD.pRICE
+            }
+            else {
+                binding.coinActivityChart.compChartCurrentPrice.text = "$ " + (it as DataChart.Data.Data).close.toString()
+            }
         }
 
         // check any changes for the radio group

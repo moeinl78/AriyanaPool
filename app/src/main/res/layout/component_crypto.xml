@@ -9,6 +9,7 @@
     android:layout_marginTop="8dp"
     android:layout_marginStart="8dp"
     android:layout_marginEnd="8dp"
+    android:layout_marginBottom="8dp"
     app:strokeWidth="1dp"
     app:strokeColor="@color/black"
     app:cardElevation="8dp"
@@ -25,7 +26,7 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/compCryptoRecyclerView"
             android:layout_width="match_parent"
-            android:layout_height="512dp"
+            android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"

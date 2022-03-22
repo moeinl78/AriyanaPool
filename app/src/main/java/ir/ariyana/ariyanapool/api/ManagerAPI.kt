@@ -1,5 +1,6 @@
 package ir.ariyana.ariyanapool.api
 
+import ir.ariyana.ariyanapool.data.chart.DataChart
 import ir.ariyana.ariyanapool.data.news.DataNews
 import ir.ariyana.ariyanapool.data.trend_crypto.TrendCrypto
 import retrofit2.Call
@@ -7,10 +8,6 @@ import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-
-const val BASE_URL = "https://min-api.cryptocompare.com/data/"
-const val BASE_URL_IMAGE = "https://www.cryptocompare.com"
-const val API_KEY = "api_key: 4193081fd30e216fe400a1a2fd0a2d150946a62dba29a043d8b70e65f0e02563"
 
 class ManagerAPI {
     private val serviceAPI : ServiceAPI
@@ -59,6 +56,24 @@ class ManagerAPI {
                 }
 
                 override fun onFailure(call: Call<TrendCrypto>, t: Throwable) {
+                    callbackAPI.onFailedRequest(t.message!!)
+                }
+
+            })
+    }
+
+    fun managerRequestChartData(period : String, fsym : String, limit : Int, aggregate : Int, callbackAPI: CallbackAPI<DataChart.Data>) {
+
+        serviceAPI
+            .requestCharData(period, fsym, limit, aggregate)
+            .enqueue(object : Callback<DataChart> {
+
+                override fun onResponse(call: Call<DataChart>, response: Response<DataChart>) {
+                    val result = response.body()!!
+                    callbackAPI.onSuccessfulRequest(result.data)
+                }
+
+                override fun onFailure(call: Call<DataChart>, t: Throwable) {
                     callbackAPI.onFailedRequest(t.message!!)
                 }
 

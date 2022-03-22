@@ -62,15 +62,67 @@ class ManagerAPI {
             })
     }
 
-    fun managerRequestChartData(period : String, fsym : String, limit : Int, aggregate : Int, callbackAPI: CallbackAPI<DataChart.Data>) {
+    fun managerRequestChartData(
+        period : String,
+        fsym : String,
+        callbackAPI: CallbackAPI<Pair<ArrayList<DataChart.Data.Data>, DataChart.Data.Data>>
+    ) {
+
+        var histo = ""
+        var limit = 30
+        var aggregate = 1
+
+        when(period) {
+
+            HOUR -> {
+                histo = HISTO_MINUTE
+                limit = 60
+                aggregate = 12
+            }
+
+            HOURS24 -> {
+                histo = HISTO_HOUR
+                limit = 24
+            }
+
+            WEEK -> {
+                histo = HISTO_DAY
+                limit = 7
+            }
+
+            MONTH -> {
+                histo = HISTO_DAY
+                limit = 30
+            }
+
+            MONTH3 -> {
+                histo = HISTO_DAY
+                limit = 90
+            }
+
+            YEAR -> {
+                histo = HISTO_DAY
+                aggregate = 12
+            }
+
+            ALL -> {
+                histo = HISTO_DAY
+                aggregate = 30
+                limit = 2000
+            }
+        }
 
         serviceAPI
-            .requestCharData(period, fsym, limit, aggregate)
+            .requestCharData(histo, fsym, limit, aggregate)
             .enqueue(object : Callback<DataChart> {
 
                 override fun onResponse(call: Call<DataChart>, response: Response<DataChart>) {
+
                     val result = response.body()!!
-                    callbackAPI.onSuccessfulRequest(result.data)
+                    val dataOne = result.data.data
+                    val dataTwo = result.data.data.maxByOrNull { it.close.toFloat() }
+                    val data = Pair(ArrayList(dataOne), dataTwo!!)
+                    callbackAPI.onSuccessfulRequest(data)
                 }
 
                 override fun onFailure(call: Call<DataChart>, t: Throwable) {

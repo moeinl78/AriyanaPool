@@ -25,7 +25,7 @@ interface ServiceAPI {
     ) : Call<TrendCrypto>
 
     @Headers(API_KEY)
-    @GET("v2/")
+    @GET("v2/{period}")
     fun requestCharData(
         @Path("period") period : String,
         @Query("fsym") fsym : String,

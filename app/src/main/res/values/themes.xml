@@ -24,10 +24,18 @@
         <!-- Customize your theme here. -->
         <item name="fontFamily">@font/mukta_medium</item>
         <item name="android:fontFamily">@font/mukta_medium</item>
+        <item name="spark_SparkViewStyle"></item>
     </style>
 
     <style name="Base_ToolbarStyle">
         <item name="popupTheme">@style/ThemeOverlay.AppCompat.Light</item>
         <item name="tint">@color/white</item>
+    </style>
+
+    <style name="newSparkStyle" parent="@style/spark_SparkView">
+        <item name="spark_lineColor">@color/orange_900</item>
+        <item name="spark_lineWidth">2dp</item>
+        <item name="spark_fill">false</item>
+        <item name="spark_baseLineColor">@color/orange_600</item>
     </style>
 </resources>

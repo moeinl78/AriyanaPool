@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
+import ir.ariyana.ariyanapool.adapter.AdapterChart
 import ir.ariyana.ariyanapool.api.HOUR
 import ir.ariyana.ariyanapool.api.ManagerAPI
 import ir.ariyana.ariyanapool.data.chart.DataChart
@@ -53,7 +54,9 @@ class CoinActivity : AppCompatActivity() {
         managerAPI.managerRequestChartData(HOUR, coinName, object : ManagerAPI.CallbackAPI<Pair<ArrayList<DataChart.Data.Data>, DataChart.Data.Data>>{
 
             override fun onSuccessfulRequest(data: Pair<ArrayList<DataChart.Data.Data>, DataChart.Data.Data>) {
-                Log.v("chartData", data.first.toString())
+
+                val adapterChart = AdapterChart(data.first, data.second.open.toString())
+                binding.coinActivityChart.compChartSparkView.adapter = adapterChart
             }
 
             override fun onFailedRequest(error: String) {

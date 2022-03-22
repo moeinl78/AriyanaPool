@@ -87,8 +87,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="160dp"
                 app:spark_animateChanges="true"
-                app:spark_lineColor="@color/blue_700"
                 app:spark_scrubEnabled="true"
+                style="@style/spark_SparkView"
                 />
 
             <RadioGroup

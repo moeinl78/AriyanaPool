@@ -1,8 +1,10 @@
 package ir.ariyana.ariyanapool.data.trend_crypto
 
-
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.parcelize.Parcelize
 
+@Parcelize
 data class TrendCrypto(
     @SerializedName("Data")
     val `data`: List<Data>,
@@ -15,10 +17,12 @@ data class TrendCrypto(
     @SerializedName("RateLimit")
     val rateLimit: RateLimit,
     @SerializedName("SponsoredData")
-    val sponsoredData: List<Any>,
+    val sponsoredData: String,
     @SerializedName("Type")
     val type: Int
-) {
+) : Parcelable {
+
+    @Parcelize
     data class Data(
         @SerializedName("CoinInfo")
         val coinInfo: CoinInfo,
@@ -26,7 +30,9 @@ data class TrendCrypto(
         val dISPLAY: DISPLAY,
         @SerializedName("RAW")
         val rAW: RAW
-    ) {
+    ) : Parcelable {
+
+        @Parcelize
         data class CoinInfo(
             @SerializedName("Algorithm")
             val algorithm: String,
@@ -62,11 +68,15 @@ data class TrendCrypto(
             val type: Int,
             @SerializedName("Url")
             val url: String
-        ) {
+        ) : Parcelable {
+
+            @Parcelize
             data class Rating(
                 @SerializedName("Weiss")
                 val weiss: Weiss
-            ) {
+            ) : Parcelable {
+
+                @Parcelize
                 data class Weiss(
                     @SerializedName("MarketPerformanceRating")
                     val marketPerformanceRating: String,
@@ -74,14 +84,17 @@ data class TrendCrypto(
                     val rating: String,
                     @SerializedName("TechnologyAdoptionRating")
                     val technologyAdoptionRating: String
-                )
+                ) : Parcelable
             }
         }
 
+        @Parcelize
         data class DISPLAY(
             @SerializedName("USD")
             val uSD: USD
-        ) {
+        ) : Parcelable {
+
+            @Parcelize
             data class USD(
                 @SerializedName("CHANGE24HOUR")
                 val cHANGE24HOUR: String,
@@ -171,13 +184,16 @@ data class TrendCrypto(
                 val vOLUMEHOUR: String,
                 @SerializedName("VOLUMEHOURTO")
                 val vOLUMEHOURTO: String
-            )
+            ) : Parcelable
         }
 
+        @Parcelize
         data class RAW(
             @SerializedName("USD")
             val uSD: USD
-        ) {
+        ) : Parcelable {
+
+            @Parcelize
             data class USD(
                 @SerializedName("CHANGE24HOUR")
                 val cHANGE24HOUR: Double,
@@ -273,14 +289,16 @@ data class TrendCrypto(
                 val vOLUMEHOUR: Double,
                 @SerializedName("VOLUMEHOURTO")
                 val vOLUMEHOURTO: Double
-            )
+            ) : Parcelable
         }
     }
 
+    @Parcelize
     data class MetaData(
         @SerializedName("Count")
         val count: Int
-    )
+    ) : Parcelable
 
-    class RateLimit
+    @Parcelize
+    class RateLimit : Parcelable
 }

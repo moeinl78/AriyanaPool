@@ -10,9 +10,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import ir.ariyana.ariyanapool.adapter.AdapterCrypto
 import ir.ariyana.ariyanapool.api.ManagerAPI
 import ir.ariyana.ariyanapool.data.trend_crypto.TrendCrypto
+import ir.ariyana.ariyanapool.databinding.ActivityCoinBinding
 import ir.ariyana.ariyanapool.databinding.ActivityMainBinding
 
-class MainActivity : AppCompatActivity() {
+const val CRYPTO_ITEM = "item"
+
+class MainActivity : AppCompatActivity(), AdapterCrypto.DataEvents {
 
     private lateinit var binding : ActivityMainBinding
     private val managerAPI = ManagerAPI()
@@ -61,7 +64,7 @@ class MainActivity : AppCompatActivity() {
             override fun onSuccessfulRequest(data: ArrayList<TrendCrypto.Data>) {
 
                 dataCrypto = data
-                val adapter = AdapterCrypto(dataCrypto)
+                val adapter = AdapterCrypto(dataCrypto, this@MainActivity)
                 binding.componentRecycler.compCryptoRecyclerView.adapter = adapter
                 binding.componentRecycler.compCryptoRecyclerView.layoutManager = LinearLayoutManager(this@MainActivity)
             }
@@ -90,5 +93,11 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
             startActivity(intent)
         }
+    }
+
+    override fun onItemClicked(item: TrendCrypto.Data) {
+        val intent = Intent(this, ActivityCoinBinding::class.java)
+        intent.putExtra(CRYPTO_ITEM, item)
+        startActivity(intent)
     }
 }

@@ -8,7 +8,7 @@ import ir.ariyana.ariyanapool.api.BASE_URL_IMAGE
 import ir.ariyana.ariyanapool.data.trend_crypto.TrendCrypto
 import ir.ariyana.ariyanapool.databinding.ItemRecyclerCryptoBinding
 
-class AdapterCrypto(private val data : ArrayList<TrendCrypto.Data>) : RecyclerView.Adapter<AdapterCrypto.ViewHolder>() {
+class AdapterCrypto(private val data : ArrayList<TrendCrypto.Data>, private val dataEvents : DataEvents) : RecyclerView.Adapter<AdapterCrypto.ViewHolder>() {
 
     inner class ViewHolder(private val binding : ItemRecyclerCryptoBinding) : RecyclerView.ViewHolder(binding.root) {
 
@@ -23,6 +23,10 @@ class AdapterCrypto(private val data : ArrayList<TrendCrypto.Data>) : RecyclerVi
                 .with(binding.root.context)
                 .load(BASE_URL_IMAGE + data[position].coinInfo.imageUrl)
                 .into(binding.itemCryptoCircleImage)
+
+            itemView.setOnClickListener {
+                dataEvents.onItemClicked(data[adapterPosition])
+            }
         }
     }
 
@@ -37,5 +41,10 @@ class AdapterCrypto(private val data : ArrayList<TrendCrypto.Data>) : RecyclerVi
 
     override fun getItemCount(): Int {
         return data.size
+    }
+
+    interface DataEvents {
+
+        fun onItemClicked(item : TrendCrypto.Data)
     }
 }

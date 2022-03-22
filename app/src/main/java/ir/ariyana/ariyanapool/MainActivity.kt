@@ -4,6 +4,8 @@ import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -30,6 +32,14 @@ class MainActivity : AppCompatActivity(), AdapterCrypto.DataEvents {
 
         setSupportActionBar(binding.componentToolbar.compHeaderToolbarLayout)
         supportActionBar?.title = "Market"
+
+        binding.mainActivitySwipeRefreshLayout.setOnRefreshListener {
+
+            onUserInterfaceStart()
+            Handler(Looper.getMainLooper()).postDelayed({
+                binding.mainActivitySwipeRefreshLayout.isRefreshing = false
+            }, 2000)
+        }
     }
 
     override fun onResume() {

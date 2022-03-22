@@ -3,6 +3,7 @@ package ir.ariyana.ariyanapool.data.trend_crypto
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 import kotlinx.parcelize.Parcelize
+import kotlinx.parcelize.RawValue
 
 @Parcelize
 data class TrendCrypto(
@@ -17,7 +18,7 @@ data class TrendCrypto(
     @SerializedName("RateLimit")
     val rateLimit: RateLimit,
     @SerializedName("SponsoredData")
-    val sponsoredData: String,
+    val sponsoredData: @RawValue List<Any>,
     @SerializedName("Type")
     val type: Int
 ) : Parcelable {

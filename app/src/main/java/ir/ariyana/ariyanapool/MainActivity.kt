@@ -30,7 +30,11 @@ class MainActivity : AppCompatActivity(), AdapterCrypto.DataEvents {
 
         setSupportActionBar(binding.componentToolbar.compHeaderToolbarLayout)
         supportActionBar?.title = "Market"
+    }
 
+    override fun onResume() {
+
+        super.onResume()
         onUserInterfaceStart()
     }
 
@@ -96,7 +100,7 @@ class MainActivity : AppCompatActivity(), AdapterCrypto.DataEvents {
     }
 
     override fun onItemClicked(item: TrendCrypto.Data) {
-        val intent = Intent(this, ActivityCoinBinding::class.java)
+        val intent = Intent(this, CoinActivity::class.java)
         intent.putExtra(CRYPTO_ITEM, item)
         startActivity(intent)
     }

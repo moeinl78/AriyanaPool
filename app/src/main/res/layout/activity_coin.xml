@@ -36,7 +36,7 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginStart="8dp"
                 android:text="@string/statistics"
-                android:textColor="@color/gray"
+                android:textColor="@color/black"
                 android:textStyle="bold"
                 android:textSize="@dimen/title"
                 />
@@ -52,7 +52,7 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginStart="8dp"
                 android:text="@string/about"
-                android:textColor="@color/gray"
+                android:textColor="@color/black"
                 android:textStyle="bold"
                 android:textSize="@dimen/title"
                 />

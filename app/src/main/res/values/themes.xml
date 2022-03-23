@@ -3,8 +3,8 @@
     <style name="Theme.AriyanaPool" parent="Theme.MaterialComponents.DayNight.NoActionBar">
 
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/blue_500</item>
-        <item name="colorPrimaryVariant">@color/blue_700</item>
+        <item name="colorPrimary">@color/blue_700</item>
+        <item name="colorPrimaryVariant">@color/blue_500</item>
         <item name="colorOnPrimary">@color/black</item>
 
         <!-- Secondary brand color. -->
@@ -24,7 +24,7 @@
         <!-- Customize your theme here. -->
         <item name="fontFamily">@font/mukta_medium</item>
         <item name="android:fontFamily">@font/mukta_medium</item>
-        <item name="spark_SparkViewStyle"></item>
+        <item name="spark_SparkViewStyle">@style/newSparkStyle</item>
     </style>
 
     <style name="Base_ToolbarStyle">

@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:text="@string/price"
         android:textStyle="bold"
-        android:textColor="@color/black"
+        android:textColor="@color/blue_700"
         android:textSize="@dimen/header"
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
@@ -92,7 +92,6 @@
                 app:spark_lineColor="@color/orange_900"
                 app:spark_lineWidth="1dp"
                 app:spark_baseLineColor="@color/blue_700"
-                app:spark_fillColor="@color/black"
                 />
 
             <RadioGroup
@@ -113,7 +112,7 @@
                     android:button="@null"
                     android:background="@drawable/selector_radio_button"
                     android:text="12H"
-                    android:textColor="@color/black"
+                    android:textColor="@color/white"
                     android:gravity="center"
                     android:checked="true"
                     />
@@ -127,7 +126,7 @@
                     android:button="@null"
                     android:background="@drawable/selector_radio_button"
                     android:text="1D"
-                    android:textColor="@color/black"
+                    android:textColor="@color/white"
                     android:gravity="center"
                     />
 
@@ -140,7 +139,7 @@
                     android:button="@null"
                     android:background="@drawable/selector_radio_button"
                     android:text="1W"
-                    android:textColor="@color/black"
+                    android:textColor="@color/white"
                     android:gravity="center"
                     />
 
@@ -153,7 +152,7 @@
                     android:button="@null"
                     android:background="@drawable/selector_radio_button"
                     android:text="1M"
-                    android:textColor="@color/black"
+                    android:textColor="@color/white"
                     android:gravity="center"
                     />
 
@@ -166,7 +165,7 @@
                     android:button="@null"
                     android:background="@drawable/selector_radio_button"
                     android:text="3M"
-                    android:textColor="@color/black"
+                    android:textColor="@color/white"
                     android:gravity="center"
                     />
 
@@ -179,7 +178,7 @@
                     android:button="@null"
                     android:background="@drawable/selector_radio_button"
                     android:text="1Y"
-                    android:textColor="@color/black"
+                    android:textColor="@color/white"
                     android:gravity="center"
                     />
 
@@ -193,7 +192,7 @@
                     android:button="@null"
                     android:background="@drawable/selector_radio_button"
                     android:text="ALL"
-                    android:textColor="@color/black"
+                    android:textColor="@color/white"
                     android:gravity="center"
                     />
 

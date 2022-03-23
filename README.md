@@ -3,8 +3,8 @@ Android App to check crypto price - With Retrofit
 
 # Description
 <p>
-    Android app using [Kotlin](https://kotlinlang.org/) and [Retrofit](https://github.com/ahmedadeltito/Retrofit-Library-Tutorial) to retrieve current price of 
-    crypto currency and to visualize price we used [Spark](https://github.com/robinhood/spark) library.
+    Android app using <a href="https://kotlinlang.org/">Kotlin</a> and <a href="https://github.com/ahmedadeltito/Retrofit-Library-Tutorial">Retrofit</a> to retrieve current price of 
+    crypto currency and to visualize price we used <a href="https://github.com/robinhood/spark">Spark</a> library.
 </p>
 
 # Dependencies

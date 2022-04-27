@@ -7,21 +7,27 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
-import android.widget.Toast
-import androidx.recyclerview.widget.LinearLayoutManager
+import io.reactivex.SingleObserver
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.disposables.Disposable
+import io.reactivex.schedulers.Schedulers
 import ir.ariyana.ariyanapool.view.adapter.AdapterCrypto
-import ir.ariyana.ariyanapool.model.api.ManagerAPI
 import ir.ariyana.ariyanapool.model.data.trend_crypto.TrendCrypto
 import ir.ariyana.ariyanapool.databinding.ActivityMainBinding
+import ir.ariyana.ariyanapool.model.data.news.DataNews
+import ir.ariyana.ariyanapool.viewmodel.ViewModelMain
 
 const val CRYPTO_ITEM = "item"
 
 class MainActivity : AppCompatActivity(), AdapterCrypto.DataEvents {
 
     private lateinit var binding : ActivityMainBinding
-    private val managerAPI = ManagerAPI()
     private lateinit var news : ArrayList<Pair<String, String>>
     private lateinit var dataCrypto : ArrayList<TrendCrypto.Data>
+
+    private val compositeDisposable = CompositeDisposable()
+    private val viewModelMain = ViewModelMain()
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -31,14 +37,6 @@ class MainActivity : AppCompatActivity(), AdapterCrypto.DataEvents {
 
         setSupportActionBar(binding.componentToolbar.compHeaderToolbarLayout)
         supportActionBar?.title = "Market"
-
-        binding.mainActivitySwipeRefreshLayout.setOnRefreshListener {
-
-            onUserInterfaceStart()
-            Handler(Looper.getMainLooper()).postDelayed({
-                binding.mainActivitySwipeRefreshLayout.isRefreshing = false
-            }, 2000)
-        }
     }
 
     override fun onResume() {
@@ -57,37 +55,52 @@ class MainActivity : AppCompatActivity(), AdapterCrypto.DataEvents {
     // call back to receive data
     private fun receiveNewsData() {
 
-        managerAPI.managerRequestNews(object : ManagerAPI.CallbackAPI<ArrayList<Pair<String, String>>>{
+        viewModelMain
+            .requestNewsVM()
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(object : SingleObserver<DataNews> {
 
-            override fun onSuccessfulRequest(data: ArrayList<Pair<String, String>>) {
-                news = data
-                changeNews()
-            }
+                override fun onSubscribe(d: Disposable) {
+                    compositeDisposable.add(d)
+                }
 
-            override fun onFailedRequest(error: String) {
-                Toast.makeText(this@MainActivity, error, Toast.LENGTH_SHORT).show()
-            }
-        })
+                override fun onSuccess(t: DataNews) {
+                    val dataSet : ArrayList<Pair<String, String>> = arrayListOf()
+
+                    t.data.forEach { item ->
+                        dataSet.add(Pair(item.title, item.url))
+                    }
+                    news = dataSet
+                }
+
+                override fun onError(e: Throwable) {
+                    Log.e("throwable", e.message!!)
+                }
+            })
     }
 
     private fun receiveTrendCrypto() {
 
-        managerAPI.managerRequestTrendCrypto(object : ManagerAPI.CallbackAPI<ArrayList<TrendCrypto.Data>> {
+        viewModelMain
+            .requestTrendVM()
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(object : SingleObserver<TrendCrypto> {
 
-            override fun onSuccessfulRequest(data: ArrayList<TrendCrypto.Data>) {
+                override fun onSubscribe(d: Disposable) {
+                    compositeDisposable.add(d)
+                }
 
-                dataCrypto = data
-                val adapter = AdapterCrypto(dataCrypto, this@MainActivity)
-                binding.componentRecycler.compCryptoRecyclerView.adapter = adapter
-                binding.componentRecycler.compCryptoRecyclerView.layoutManager = LinearLayoutManager(this@MainActivity)
-            }
+                override fun onSuccess(t: TrendCrypto) {
+                    val dataList = ArrayList(t.data)
+                    dataCrypto = dataList
+                }
 
-            override fun onFailedRequest(error: String) {
-                Toast.makeText(this@MainActivity, error, Toast.LENGTH_SHORT).show()
-                Log.v("error", error)
-            }
-
-        })
+                override fun onError(e: Throwable) {
+                    Log.e("throwable", e.message!!)
+                }
+            })
     }
 
     // change news onclick or show news in browser

@@ -33,52 +33,7 @@ class RepositoryMain {
         return serviceAPI.requestTrendCrypto()
     }
 
-    fun repoRequestChartData(period : String, fsym : String) : Single<DataChart> {
-
-        var histo = ""
-        var limit = 30
-        var aggregate = 1
-
-        when(period) {
-
-            HOUR -> {
-                histo = HISTO_MINUTE
-                limit = 60
-                aggregate = 12
-            }
-
-            HOURS24 -> {
-                histo = HISTO_HOUR
-                limit = 24
-            }
-
-            WEEK -> {
-                histo = HISTO_DAY
-                limit = 7
-            }
-
-            MONTH -> {
-                histo = HISTO_DAY
-                limit = 30
-            }
-
-            MONTH3 -> {
-                histo = HISTO_DAY
-                limit = 90
-            }
-
-            YEAR -> {
-                histo = HISTO_DAY
-                aggregate = 12
-            }
-
-            ALL -> {
-                histo = HISTO_DAY
-                aggregate = 30
-                limit = 2000
-            }
-        }
-
-        return serviceAPI.requestCharData(histo, fsym, limit, aggregate)
+    fun repoRequestChartData(histo : String, fsym : String, limit : Int, aggregate : Int) : Single<DataChart> {
+        return serviceAPI.requestCharData(histo , fsym, limit, aggregate)
     }
 }

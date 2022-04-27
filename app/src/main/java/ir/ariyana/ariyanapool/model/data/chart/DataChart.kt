@@ -1,4 +1,4 @@
-package ir.ariyana.ariyanapool.data.chart
+package ir.ariyana.ariyanapool.model.data.chart
 
 
 import com.google.gson.annotations.SerializedName

@@ -1,14 +1,14 @@
-package ir.ariyana.ariyanapool
+package ir.ariyana.ariyanapool.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.provider.ContactsContract
 import android.widget.Toast
 import androidx.core.content.ContextCompat
-import ir.ariyana.ariyanapool.adapter.AdapterChart
-import ir.ariyana.ariyanapool.api.*
-import ir.ariyana.ariyanapool.data.chart.DataChart
-import ir.ariyana.ariyanapool.data.trend_crypto.TrendCrypto
+import ir.ariyana.ariyanapool.R
+import ir.ariyana.ariyanapool.view.adapter.AdapterChart
+import ir.ariyana.ariyanapool.model.api.*
+import ir.ariyana.ariyanapool.model.data.chart.DataChart
+import ir.ariyana.ariyanapool.model.data.trend_crypto.TrendCrypto
 import ir.ariyana.ariyanapool.databinding.ActivityCoinBinding
 
 class CoinActivity : AppCompatActivity() {

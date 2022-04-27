@@ -1,4 +1,4 @@
-package ir.ariyana.ariyanapool.api
+package ir.ariyana.ariyanapool.model.api
 
 const val BASE_URL = "https://min-api.cryptocompare.com/data/"
 const val BASE_URL_IMAGE = "https://www.cryptocompare.com"

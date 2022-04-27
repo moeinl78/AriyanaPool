@@ -1,4 +1,4 @@
-package ir.ariyana.ariyanapool
+package ir.ariyana.ariyanapool.view
 
 import android.content.Intent
 import android.net.Uri
@@ -9,10 +9,9 @@ import android.os.Looper
 import android.util.Log
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
-import ir.ariyana.ariyanapool.adapter.AdapterCrypto
-import ir.ariyana.ariyanapool.api.ManagerAPI
-import ir.ariyana.ariyanapool.data.trend_crypto.TrendCrypto
-import ir.ariyana.ariyanapool.databinding.ActivityCoinBinding
+import ir.ariyana.ariyanapool.view.adapter.AdapterCrypto
+import ir.ariyana.ariyanapool.model.api.ManagerAPI
+import ir.ariyana.ariyanapool.model.data.trend_crypto.TrendCrypto
 import ir.ariyana.ariyanapool.databinding.ActivityMainBinding
 
 const val CRYPTO_ITEM = "item"

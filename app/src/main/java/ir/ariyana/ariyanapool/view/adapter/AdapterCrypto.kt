@@ -1,11 +1,11 @@
-package ir.ariyana.ariyanapool.adapter
+package ir.ariyana.ariyanapool.view.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import ir.ariyana.ariyanapool.api.BASE_URL_IMAGE
-import ir.ariyana.ariyanapool.data.trend_crypto.TrendCrypto
+import ir.ariyana.ariyanapool.model.api.BASE_URL_IMAGE
+import ir.ariyana.ariyanapool.model.data.trend_crypto.TrendCrypto
 import ir.ariyana.ariyanapool.databinding.ItemRecyclerCryptoBinding
 
 class AdapterCrypto(private val data : ArrayList<TrendCrypto.Data>, private val dataEvents : DataEvents) : RecyclerView.Adapter<AdapterCrypto.ViewHolder>() {

@@ -1,4 +1,4 @@
-package ir.ariyana.ariyanapool.data.trend_crypto
+package ir.ariyana.ariyanapool.model.data.trend_crypto
 
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName

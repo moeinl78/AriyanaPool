@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AriyanaPool">
         <activity
-            android:name=".CoinActivity"
+            android:name=".view.CoinActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

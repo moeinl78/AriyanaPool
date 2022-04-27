@@ -1,4 +1,4 @@
-package ir.ariyana.ariyanapool.data.news
+package ir.ariyana.ariyanapool.model.data.news
 
 import com.google.gson.annotations.SerializedName
 

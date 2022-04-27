@@ -1,7 +1,7 @@
-package ir.ariyana.ariyanapool.adapter
+package ir.ariyana.ariyanapool.view.adapter
 
 import com.robinhood.spark.SparkAdapter
-import ir.ariyana.ariyanapool.data.chart.DataChart
+import ir.ariyana.ariyanapool.model.data.chart.DataChart
 
 class AdapterChart(private val data : ArrayList<DataChart.Data.Data>, private val baseLine : String?) : SparkAdapter() {
 

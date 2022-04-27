@@ -1,8 +1,8 @@
-package ir.ariyana.ariyanapool.api
+package ir.ariyana.ariyanapool.model.api
 
-import ir.ariyana.ariyanapool.data.chart.DataChart
-import ir.ariyana.ariyanapool.data.news.DataNews
-import ir.ariyana.ariyanapool.data.trend_crypto.TrendCrypto
+import ir.ariyana.ariyanapool.model.data.chart.DataChart
+import ir.ariyana.ariyanapool.model.data.news.DataNews
+import ir.ariyana.ariyanapool.model.data.trend_crypto.TrendCrypto
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Headers

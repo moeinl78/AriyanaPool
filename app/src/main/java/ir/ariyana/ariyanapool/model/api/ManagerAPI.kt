@@ -1,5 +1,11 @@
 package ir.ariyana.ariyanapool.model.api
 
+import android.util.Log
+import io.reactivex.SingleObserver
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.disposables.Disposable
+import io.reactivex.schedulers.Schedulers
 import ir.ariyana.ariyanapool.model.data.chart.DataChart
 import ir.ariyana.ariyanapool.model.data.news.DataNews
 import ir.ariyana.ariyanapool.model.data.trend_crypto.TrendCrypto
@@ -10,7 +16,10 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 class ManagerAPI {
+
     private val serviceAPI : ServiceAPI
+    private val compositeDisposable = CompositeDisposable()
+
     init {
         val retrofit = Retrofit
             .Builder()
@@ -25,20 +34,25 @@ class ManagerAPI {
 
         serviceAPI
             .requestNews()
-            .enqueue(object : Callback<DataNews> {
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(object : SingleObserver<DataNews> {
 
-                override fun onResponse(call: Call<DataNews>, response: Response<DataNews>) {
-                    val result = response.body()!!
+                override fun onSubscribe(d: Disposable) {
+                    compositeDisposable.add(d)
+                }
+
+                override fun onSuccess(t: DataNews) {
                     val dataSet : ArrayList<Pair<String, String>> = arrayListOf()
 
-                    result.data.forEach { item ->
+                    t.data.forEach { item ->
                         dataSet.add(Pair(item.title, item.url))
                     }
                     callbackAPI.onSuccessfulRequest(dataSet)
                 }
 
-                override fun onFailure(call: Call<DataNews>, t: Throwable) {
-                    val errorMessage = t.message!!
+                override fun onError(e: Throwable) {
+                    val errorMessage = e.message!!
                     callbackAPI.onFailedRequest(errorMessage)
                 }
             })

@@ -1,5 +1,6 @@
 package ir.ariyana.ariyanapool.model.api
 
+import io.reactivex.Single
 import ir.ariyana.ariyanapool.model.data.chart.DataChart
 import ir.ariyana.ariyanapool.model.data.news.DataNews
 import ir.ariyana.ariyanapool.model.data.trend_crypto.TrendCrypto
@@ -15,14 +16,14 @@ interface ServiceAPI {
     @GET("v2/news/")
     fun requestNews(
         @Query("sortOrder") sortOrder : String = "popular",
-    ) : Call<DataNews>
+    ) : Single<DataNews>
 
     @Headers(API_KEY)
     @GET("top/totalvolfull")
     fun requestTrendCrypto(
         @Query("tsym") tsym : String = "USD",
         @Query("limit") limit : Int = 10
-    ) : Call<TrendCrypto>
+    ) : Single<TrendCrypto>
 
     @Headers(API_KEY)
     @GET("v2/{period}")
@@ -32,5 +33,5 @@ interface ServiceAPI {
         @Query("limit") limit : Int,
         @Query("aggregate") aggregate : Int,
         @Query("tsym") tsym : String = "USD"
-    ) : Call<DataChart>
+    ) : Single<DataChart>
 }

@@ -1,11 +1,13 @@
 package ir.ariyana.ariyanapool.model.data.trend_crypto
 
 import android.os.Parcelable
+import androidx.room.Entity
 import com.google.gson.annotations.SerializedName
 import kotlinx.parcelize.Parcelize
 import kotlinx.parcelize.RawValue
 
 @Parcelize
+@Entity(tableName = "crypto_trend")
 data class TrendCrypto(
     @SerializedName("Data")
     val `data`: List<Data>,

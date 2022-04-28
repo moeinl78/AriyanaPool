@@ -1,16 +1,17 @@
 package ir.ariyana.ariyanapool.model.data.news
 
 import com.google.gson.annotations.SerializedName
+import kotlinx.parcelize.RawValue
 
 data class DataNews(
     @SerializedName("Data")
-    val `data`: List<Data>,
+    val `data`: @RawValue List<Data>,
     @SerializedName("HasWarning")
     val hasWarning: Boolean,
     @SerializedName("Message")
     val message: String,
     @SerializedName("Promoted")
-    val promoted: List<Any>,
+    val promoted: @RawValue List<Any>,
     @SerializedName("RateLimit")
     val rateLimit: RateLimit,
     @SerializedName("Type")

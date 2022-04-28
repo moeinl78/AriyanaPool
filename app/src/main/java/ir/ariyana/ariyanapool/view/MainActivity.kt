@@ -4,9 +4,8 @@ import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import android.util.Log
+import androidx.recyclerview.widget.LinearLayoutManager
 import io.reactivex.SingleObserver
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -30,7 +29,6 @@ class MainActivity : AppCompatActivity(), AdapterCrypto.DataEvents {
     private val viewModelMain = ViewModelMain()
 
     override fun onCreate(savedInstanceState: Bundle?) {
-
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -66,16 +64,19 @@ class MainActivity : AppCompatActivity(), AdapterCrypto.DataEvents {
                 }
 
                 override fun onSuccess(t: DataNews) {
+                    Log.i("news", t.toString())
                     val dataSet : ArrayList<Pair<String, String>> = arrayListOf()
-
                     t.data.forEach { item ->
                         dataSet.add(Pair(item.title, item.url))
                     }
                     news = dataSet
+                    binding.componentNews.compNewsFAB.setOnClickListener {
+                        changeNews()
+                    }
                 }
 
                 override fun onError(e: Throwable) {
-                    Log.e("throwable", e.message!!)
+                    Log.e("throwableNews", e.message!!)
                 }
             })
     }
@@ -95,10 +96,13 @@ class MainActivity : AppCompatActivity(), AdapterCrypto.DataEvents {
                 override fun onSuccess(t: TrendCrypto) {
                     val dataList = ArrayList(t.data)
                     dataCrypto = dataList
+                    val adapter = AdapterCrypto(dataCrypto, this@MainActivity)
+                    binding.componentRecycler.compCryptoRecyclerView.adapter = adapter
+                    binding.componentRecycler.compCryptoRecyclerView.layoutManager = LinearLayoutManager(this@MainActivity)
                 }
 
                 override fun onError(e: Throwable) {
-                    Log.e("throwable", e.message!!)
+                    Log.e("throwableTrend", e.message!!)
                 }
             })
     }

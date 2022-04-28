@@ -2,20 +2,28 @@ package ir.ariyana.ariyanapool.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.core.content.ContextCompat
+import io.reactivex.Single
+import io.reactivex.SingleObserver
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.Disposable
+import io.reactivex.schedulers.Schedulers
 import ir.ariyana.ariyanapool.R
 import ir.ariyana.ariyanapool.view.adapter.AdapterChart
 import ir.ariyana.ariyanapool.model.api.*
 import ir.ariyana.ariyanapool.model.data.chart.DataChart
 import ir.ariyana.ariyanapool.model.data.trend_crypto.TrendCrypto
 import ir.ariyana.ariyanapool.databinding.ActivityCoinBinding
+import ir.ariyana.ariyanapool.viewmodel.ViewModelMain
 
 class CoinActivity : AppCompatActivity() {
 
     private lateinit var binding : ActivityCoinBinding
     private lateinit var data : TrendCrypto.Data
-    private val managerAPI = ManagerAPI()
+    private lateinit var disposable : Disposable
+    private val viewModelMain = ViewModelMain()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -55,7 +63,7 @@ class CoinActivity : AppCompatActivity() {
         binding.coinActivityChart.compChartCurrentPrice.text = data.dISPLAY.uSD.pRICE
         binding.coinActivityChart.compChartStatusDifference.text = data.dISPLAY.uSD.cHANGEDAY
         binding.coinActivityChart.compChartStatusPercentage.text = data.dISPLAY.uSD.cHANGEPCTDAY + " %"
-        receiveCharData(period, coinName)
+        receiveChartData(period, coinName)
 
         val diff = data.rAW.uSD.cHANGE24HOUR
         if (diff > 0) {
@@ -112,24 +120,33 @@ class CoinActivity : AppCompatActivity() {
                     HOUR
                 }
             }
-            receiveCharData(period, coinName)
+            receiveChartData(period, coinName)
         }
     }
 
-    private fun receiveCharData(period : String, coinName : String) {
+    private fun receiveChartData(period : String, coinName : String) {
 
-        // instantiate api call for chart data
-        managerAPI.managerRequestChartData(period, coinName, object : ManagerAPI.CallbackAPI<Pair<ArrayList<DataChart.Data.Data>, DataChart.Data.Data>>{
+        viewModelMain
+            .requestChartVM(period, coinName)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(object : SingleObserver<DataChart> {
 
-            override fun onSuccessfulRequest(data: Pair<ArrayList<DataChart.Data.Data>, DataChart.Data.Data>) {
+                override fun onSubscribe(d: Disposable) {
+                    disposable = d
+                }
 
-                val adapterChart = AdapterChart(data.first, data.second.open.toString())
-                binding.coinActivityChart.compChartSparkView.adapter = adapterChart
-            }
+                override fun onSuccess(t: DataChart) {
+                    val dataOne = t.data.data
+                    val dataTwo = t.data.data.maxByOrNull { it.close.toFloat() }
+                    val data = Pair(ArrayList(dataOne), dataTwo!!)
+                    val adapterChart = AdapterChart(data.first, data.second.open.toString())
+                    binding.coinActivityChart.compChartSparkView.adapter = adapterChart
+                }
 
-            override fun onFailedRequest(error: String) {
-                Toast.makeText(this@CoinActivity, error, Toast.LENGTH_SHORT).show()
-            }
-        })
+                override fun onError(e: Throwable) {
+                    Log.e("throwableChart", e.message!!)
+                }
+            })
     }
 }

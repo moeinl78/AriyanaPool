@@ -28,7 +28,7 @@ class MainActivity : AppCompatActivity(), AdapterCrypto.DataEvents {
     private lateinit var dataCrypto : ArrayList<TrendCrypto.Data>
 
     private val compositeDisposable = CompositeDisposable()
-    private val viewModelMain = ViewModelMain()
+    private val viewModelMain = ViewModelMain(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

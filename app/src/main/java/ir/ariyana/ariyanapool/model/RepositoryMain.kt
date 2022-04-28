@@ -6,11 +6,12 @@ import ir.ariyana.ariyanapool.model.api.*
 import ir.ariyana.ariyanapool.model.data.chart.DataChart
 import ir.ariyana.ariyanapool.model.data.news.DataNews
 import ir.ariyana.ariyanapool.model.data.trend_crypto.TrendCrypto
+import ir.ariyana.ariyanapool.model.local.CryptoDao
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 
-class RepositoryMain {
+class RepositoryMain(private val cryptoDao: CryptoDao) {
 
     private val serviceAPI : ServiceAPI
 
@@ -31,7 +32,11 @@ class RepositoryMain {
     }
 
     fun repoRequestTrendCrypto() : Flowable<TrendCrypto> {
-        return serviceAPI.requestTrendCrypto()
+        return serviceAPI
+            .requestTrendCrypto()
+            .doOnNext { item ->
+                cryptoDao.cryptoInsert(item)
+            }
     }
 
     fun repoRequestChartData(histo : String, fsym : String, limit : Int, aggregate : Int) : Single<DataChart> {

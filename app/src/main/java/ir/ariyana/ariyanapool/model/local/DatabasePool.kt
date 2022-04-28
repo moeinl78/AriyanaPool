@@ -13,6 +13,7 @@ abstract class DatabasePool : RoomDatabase() {
 
     companion object {
 
+        @Volatile
         private var database : DatabasePool ? = null
 
         fun createDataBase(context : Context) : DatabasePool {

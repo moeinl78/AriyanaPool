@@ -1,5 +1,6 @@
 package ir.ariyana.ariyanapool.viewmodel
 
+import android.content.Context
 import io.reactivex.Flowable
 import io.reactivex.Single
 import ir.ariyana.ariyanapool.model.RepositoryMain
@@ -7,10 +8,12 @@ import ir.ariyana.ariyanapool.model.api.*
 import ir.ariyana.ariyanapool.model.data.chart.DataChart
 import ir.ariyana.ariyanapool.model.data.news.DataNews
 import ir.ariyana.ariyanapool.model.data.trend_crypto.TrendCrypto
+import ir.ariyana.ariyanapool.model.local.DatabasePool
 
-class ViewModelMain {
+class ViewModelMain(context : Context) {
 
-    private val repositoryMain = RepositoryMain()
+    private val cryptoDao = DatabasePool.createDataBase(context).cryptoDao
+    private val repositoryMain = RepositoryMain(cryptoDao)
 
     fun requestNewsVM() : Single<DataNews> {
         return repositoryMain.repoRequestNews()

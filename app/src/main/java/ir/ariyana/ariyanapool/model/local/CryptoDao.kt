@@ -1,13 +1,13 @@
 package ir.ariyana.ariyanapool.model.local
 
+import androidx.lifecycle.LiveData
 import androidx.room.*
-import io.reactivex.Flowable
 import ir.ariyana.ariyanapool.model.data.trend_crypto.TrendCrypto
 
 @Dao
 interface CryptoDao {
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun cryptoInsert(crypto : TrendCrypto)
 
     @Update
@@ -17,5 +17,5 @@ interface CryptoDao {
     fun cryptoDelete(crypto: TrendCrypto)
 
     @Query("SELECT * FROM crypto_trend")
-    fun cryptoRead() : Flowable<TrendCrypto>
+    fun cryptoRead() : LiveData<TrendCrypto>
 }

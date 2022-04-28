@@ -1,5 +1,6 @@
 package ir.ariyana.ariyanapool.viewmodel
 
+import io.reactivex.Flowable
 import io.reactivex.Single
 import ir.ariyana.ariyanapool.model.RepositoryMain
 import ir.ariyana.ariyanapool.model.api.*
@@ -15,7 +16,7 @@ class ViewModelMain {
         return repositoryMain.repoRequestNews()
     }
 
-    fun requestTrendVM() : Single<TrendCrypto> {
+    fun requestTrendVM() : Flowable<TrendCrypto> {
         return repositoryMain.repoRequestTrendCrypto()
     }
 

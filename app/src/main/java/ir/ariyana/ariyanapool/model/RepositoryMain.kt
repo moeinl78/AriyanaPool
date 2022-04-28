@@ -1,5 +1,6 @@
 package ir.ariyana.ariyanapool.model
 
+import io.reactivex.Flowable
 import io.reactivex.Single
 import ir.ariyana.ariyanapool.model.api.*
 import ir.ariyana.ariyanapool.model.data.chart.DataChart
@@ -29,7 +30,7 @@ class RepositoryMain {
         return serviceAPI.requestNews()
     }
 
-    fun repoRequestTrendCrypto() : Single<TrendCrypto> {
+    fun repoRequestTrendCrypto() : Flowable<TrendCrypto> {
         return serviceAPI.requestTrendCrypto()
     }
 

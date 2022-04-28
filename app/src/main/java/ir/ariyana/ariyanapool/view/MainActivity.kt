@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
+import io.reactivex.FlowableSubscriber
 import io.reactivex.SingleObserver
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -16,6 +17,7 @@ import ir.ariyana.ariyanapool.model.data.trend_crypto.TrendCrypto
 import ir.ariyana.ariyanapool.databinding.ActivityMainBinding
 import ir.ariyana.ariyanapool.model.data.news.DataNews
 import ir.ariyana.ariyanapool.viewmodel.ViewModelMain
+import org.reactivestreams.Subscription
 
 const val CRYPTO_ITEM = "item"
 
@@ -41,6 +43,11 @@ class MainActivity : AppCompatActivity(), AdapterCrypto.DataEvents {
 
         super.onResume()
         onUserInterfaceStart()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        compositeDisposable.clear()
     }
 
     private fun onUserInterfaceStart() {
@@ -87,22 +94,26 @@ class MainActivity : AppCompatActivity(), AdapterCrypto.DataEvents {
             .requestTrendVM()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe(object : SingleObserver<TrendCrypto> {
+            .subscribe(object : FlowableSubscriber<TrendCrypto> {
 
-                override fun onSubscribe(d: Disposable) {
-                    compositeDisposable.add(d)
+                override fun onSubscribe(s: Subscription) {
+                    s.request(Long.MAX_VALUE)
                 }
 
-                override fun onSuccess(t: TrendCrypto) {
-                    val dataList = ArrayList(t.data)
+                override fun onNext(t: TrendCrypto?) {
+                    val dataList = ArrayList(t!!.data)
                     dataCrypto = dataList
                     val adapter = AdapterCrypto(dataCrypto, this@MainActivity)
                     binding.componentRecycler.compCryptoRecyclerView.adapter = adapter
                     binding.componentRecycler.compCryptoRecyclerView.layoutManager = LinearLayoutManager(this@MainActivity)
                 }
 
-                override fun onError(e: Throwable) {
-                    Log.e("throwableTrend", e.message!!)
+                override fun onError(t: Throwable?) {
+                    Log.e("throwableNews", t!!.message!!)
+                }
+
+                override fun onComplete() {
+                    Log.i("completed", "ok")
                 }
             })
     }

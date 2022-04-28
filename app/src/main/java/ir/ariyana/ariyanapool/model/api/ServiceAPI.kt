@@ -1,5 +1,6 @@
 package ir.ariyana.ariyanapool.model.api
 
+import io.reactivex.Flowable
 import io.reactivex.Single
 import ir.ariyana.ariyanapool.model.data.chart.DataChart
 import ir.ariyana.ariyanapool.model.data.news.DataNews
@@ -23,7 +24,7 @@ interface ServiceAPI {
     fun requestTrendCrypto(
         @Query("tsym") tsym : String = "USD",
         @Query("limit") limit : Int = 10
-    ) : Single<TrendCrypto>
+    ) : Flowable<TrendCrypto>
 
     @Headers(API_KEY)
     @GET("v2/{period}")
